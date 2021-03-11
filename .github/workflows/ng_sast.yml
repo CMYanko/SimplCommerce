@@ -34,7 +34,7 @@ jobs:
       run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
       id: extract_branch
     - name: Analyze with NextGen Static Analysis
-      run: .\sl analyze --app SimplCommerce --tag branch=${{ github.head_ref || steps.extract_branch.outputs.branch }} --csharp --sca --dotnet-core --cpg SimplCommerce.sln
+      run: .\sl analyze --app SimplCommerce --tag branch=${{ github.head_ref || steps.extract_branch.outputs.branch }} --csharp --sca --verbose --ignore-test --dotnet-core --cpg SimplCommerce.sln
       env:
         SHIFTLEFT_ACCESS_TOKEN: ${{ secrets.SHIFTLEFT_ACCESS_TOKEN }}
 
